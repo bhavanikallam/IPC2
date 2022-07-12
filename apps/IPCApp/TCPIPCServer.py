@@ -75,7 +75,7 @@ class IpcTCPRequestHandler(socketserver.BaseRequestHandler):
 
                 processed_data = None
                 if workType in work_packet and work_packet[workType] == EvaluateExpression:
-                    processed_data = functions.evaluate(work_packet)
+                    processed_data = expressions.functions.evaluate(work_packet)
 
                 elif workType in work_packet and work_packet[workType] == Echo:
                     processed_data = work_packet
