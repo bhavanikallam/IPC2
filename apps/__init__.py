@@ -1,1 +1,1 @@
-from apps.IPCApp.TCPIPCServer import IpcTCPRequestHandler
+from IPCApp.TCPIPCServer import IpcTCPRequestHandler
