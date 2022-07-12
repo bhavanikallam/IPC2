@@ -3,7 +3,7 @@ import socketserver
 import sys
 import threading
 import traceback
-from apps.IPCApp.expressions import functions
+from expressions import functions
 
 Error = "error"
 Status = "status"
