@@ -3,7 +3,7 @@ import socketserver
 import sys
 import threading
 import traceback
-from expressions import functions
+import expressions
 
 Error = "error"
 Status = "status"
