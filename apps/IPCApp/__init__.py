@@ -1,3 +1,3 @@
-from .TCPIPCServer import IpcTCPRequestHandler
-from .expressions import *
+from TCPIPCServer import IpcTCPRequestHandler
+from expressions import *
 
