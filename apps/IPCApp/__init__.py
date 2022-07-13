@@ -1,3 +1,3 @@
-import TCPIPCServer
+from TCPIPCServer import *
 from . import expressions
 
