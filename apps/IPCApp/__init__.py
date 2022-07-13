@@ -1,3 +1,4 @@
 from TCPIPCServer import *
-from .expressions import *
+from apps.IPCApp.expressions import *
+
 
