@@ -1,5 +1,4 @@
 import json
-import traceback
 from apps.IPCApp.expressions.datefn import *
 
 Exp = "exp"
@@ -24,7 +23,7 @@ def evaluate(params):
         keys_to_exclude = {Exp}
         variables = {k: v for k, v in params.items() if k not in keys_to_exclude}
         # printing the variables Json
-        print("variables:- ", variables)
+        print("variables:- ", json.dumps(variables))
         s = substitute(expression, variables)
         # printing the expression after substituting the variables
         print("expression:- ", s)
