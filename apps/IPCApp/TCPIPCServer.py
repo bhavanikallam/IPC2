@@ -3,7 +3,7 @@ import socketserver
 import sys
 import threading
 import traceback
-from expressions.functions import evaluate
+from apps.IPCApp.expressions import functions
 
 Error = "error"
 Status = "status"
@@ -67,7 +67,7 @@ class IpcTCPRequestHandler(socketserver.BaseRequestHandler):
 
                 processed_data = None
                 if workType in work_packet and work_packet[workType] == EvaluateExpression:
-                    processed_data = evaluate(work_packet)
+                    processed_data = functions.evaluate(work_packet)
 
                 elif workType in work_packet and work_packet[workType] == Echo:
                     processed_data = work_packet
