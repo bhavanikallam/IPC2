@@ -97,9 +97,6 @@ def start_server():
     except KeyboardInterrupt:
         sys.exit(0)
         
-def hello():
-    print("welcome")
-    return "welcome"
 
 if __name__ == "__main__":
     start_server()
