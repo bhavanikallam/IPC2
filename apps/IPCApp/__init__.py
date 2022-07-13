@@ -1,2 +1,2 @@
-from . import TCPIPCServer
-from . import expressions
+import TCPIPCServer
+from expressions import *
