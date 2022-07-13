@@ -1,6 +1,6 @@
 import json
 import traceback
-from .datefn import *
+from apps.IPCApp.expressions.datefn import *
 
 Exp = "exp"
 Success = "success"
