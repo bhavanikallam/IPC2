@@ -17,7 +17,6 @@ HOST, PORT = "0.0.0.0", 9150
 class IpcTCPRequestHandler(socketserver.BaseRequestHandler):
     """
     The RequestHandler class for our server.
-
     It is instantiated once per connection to the server, and must
     override the handle() method to implement communication to the
     client.
@@ -33,7 +32,7 @@ class IpcTCPRequestHandler(socketserver.BaseRequestHandler):
         try:
             while True:
                 try:
-                    data = socket.recv(4096*4096).decode('utf-8')
+                    data = socket.recv(4096 * 4096).decode('utf-8')
                     if data == '':
                         print("client socket connection closed")
                         break
@@ -58,7 +57,7 @@ class IpcTCPRequestHandler(socketserver.BaseRequestHandler):
                     response[Error] = "Socket Connection Aborted " + e.__str__()
                     break
                 try:
-                    print("Data Received: ", data)
+                    print("Data Received: ", json.dumps(data, indent=4))
                     work_packet = json.loads(data)
                 except Exception as e:
                     print("failed to convert below received data into json packet ", e.__str__())
@@ -72,7 +71,7 @@ class IpcTCPRequestHandler(socketserver.BaseRequestHandler):
                 elif workType in work_packet and work_packet[workType] == Echo:
                     processed_data = work_packet
 
-                print(">>>>>>>> processed_data: ", processed_data)
+                print(">>>>>>>> processed_data: ", json.dumps(processed_data, indent=4))
                 # sending back the processed data
                 socket.sendall(bytes(str(processed_data), encoding="utf-8"))
 
@@ -94,9 +93,10 @@ def start_server():
     try:
         # activate the server
         server.serve_forever()
+        print("server is listening on PORT: ", PORT)
     except KeyboardInterrupt:
         sys.exit(0)
-        
+
 
 if __name__ == "__main__":
     start_server()
@@ -109,7 +109,4 @@ if __name__ == "__main__":
 #         server.serve_forever()
 #     except KeyboardInterrupt:
 #         sys.exit(0)
-
-
-
 
