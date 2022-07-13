@@ -1,4 +1,4 @@
 from TCPIPCServer import *
-from .expressions import *
+from expressions import *
 
 
