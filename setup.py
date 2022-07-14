@@ -8,7 +8,7 @@ install_requires = []
 with open(os.path.join(project_path, "IPC_requirements.txt"), encoding="utf-8") as fh:
     for line in fh:
         req_packages = line.strip()
-        if not req_packages.startswith('pip'):
+        if not req_packages.startswith(('pip', 'setuptools', 'six', 'wheel')):
             install_requires.append(req_packages)
 
 
