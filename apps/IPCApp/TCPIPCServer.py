@@ -98,12 +98,12 @@ def start_server():
     try:
         # activate the server
         server.serve_forever()
+        print("*** TCPIPCServer is up and running on PORT *** :", PORT)
     except KeyboardInterrupt:
         sys.exit(0)
 
 
 if __name__ == "__main__":
-    print("*** TCPIPCServer is up and running on PORT *** :", PORT)
     start_server()
 
 #     # instantiate the server, and bind to localhost on port 9150
