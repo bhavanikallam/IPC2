@@ -1,5 +1,6 @@
 import json
-from apps.IPCApp.expressions.datefn import *
+import traceback
+from core.expressions.datefn import *
 
 Exp = "exp"
 Success = "success"
@@ -55,5 +56,12 @@ def evaluate(params):
     #     "__C__": "\"months\""
     # }
 
+    # input_params = {
+    #     "exp": "DATES_ADD(__A__, __B__, __C__)",
+    #     "workType": "EvaluateExpression",
+    #     "__A__": "\"2020-03-21 12:30:00\"",
+    #     "__B__": "-20",
+    #     "__C__": "\"YEARS\""
+    # }
     # res = evaluate(input_params)
     # print(res)
