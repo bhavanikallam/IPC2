@@ -103,6 +103,7 @@ def start_server():
 
 
 if __name__ == "__main__":
+    print("*** TCPIPCServer is up and running on PORT *** :", PORT)
     start_server()
 
 #     # instantiate the server, and bind to localhost on port 9150
