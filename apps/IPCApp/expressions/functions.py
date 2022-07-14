@@ -5,6 +5,7 @@ Exp = "exp"
 Success = "success"
 Error = "error"
 Status = "status"
+WorkType = "workType"
 
 
 def substitute(exp, variables):
@@ -20,10 +21,10 @@ def evaluate(params):
     response = {}
     try:
         expression = params.get(Exp)
-        keys_to_exclude = {Exp}
+        keys_to_exclude = {Exp, WorkType}
         variables = {k: v for k, v in params.items() if k not in keys_to_exclude}
         # printing the variables Json
-        print("variables:- ", json.dumps(variables))
+        print("variables:- ", json.dumps(variables, indent=4))
         s = substitute(expression, variables)
         # printing the expression after substituting the variables
         print("expression:- ", s)
@@ -34,7 +35,7 @@ def evaluate(params):
         response[Success] = False
         response[Error] = "failed to evaluate due to " + e.__str__()
         traceback.print_exc()
-    return json.dumps(response)
+    return response
 
 
 # if __name__ == "__main__":
