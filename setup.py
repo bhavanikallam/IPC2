@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-project_path = os.path.dirname(os.path.dirname(__file__))
+project_path = os.path.dirname(__file__)
 
 
 install_requires = []
