@@ -7,6 +7,7 @@ from apps.IPCApp.expressions import functions
 
 Error = "error"
 Status = "status"
+Success = "success"
 workType = "workType"
 EvaluateExpression = "EvaluateExpression"
 Echo = "Echo"
@@ -26,12 +27,10 @@ class IpcTCPRequestHandler(socketserver.BaseRequestHandler):
         response = {}
         # self.request is the TCP socket connected to the client
         socket = self.request
-        # printing thread-ID
-        cur_thread = threading.current_thread()
-        print("Current Thread Name: ", cur_thread.name)
         try:
             while True:
                 try:
+                    print("*** TCPIPCServer is up and running on PORT:", PORT)
                     data = socket.recv(4096 * 4096).decode('utf-8')
                     if data == '':
                         print("client socket connection closed")
@@ -56,12 +55,18 @@ class IpcTCPRequestHandler(socketserver.BaseRequestHandler):
                     response[Status] = False
                     response[Error] = "Socket Connection Aborted " + e.__str__()
                     break
+
+                # printing thread-ID
+                cur_thread = threading.current_thread()
+                print("Current Thread Name: ", cur_thread.name)
+
                 try:
-                    print("Data Received: ", json.dumps(data, indent=4))
+                    print("Data Received: ", data)
                     work_packet = json.loads(data)
+                    print("work_packet:- ", json.dumps(work_packet, indent=4))
                 except Exception as e:
                     print("failed to convert below received data into json packet ", e.__str__())
-                    print("received data: ", data)
+                    print("Received Data: ", data)
                     continue
 
                 processed_data = None
@@ -71,9 +76,9 @@ class IpcTCPRequestHandler(socketserver.BaseRequestHandler):
                 elif workType in work_packet and work_packet[workType] == Echo:
                     processed_data = work_packet
 
-                print(">>>>>>>> processed_data: ", json.dumps(processed_data, indent=4))
+                print(">>>>>>>> processed_data:- ", json.dumps(processed_data, indent=4))
                 # sending back the processed data
-                socket.sendall(bytes(str(processed_data), encoding="utf-8"))
+                socket.sendall(bytes(json.dumps(processed_data, indent=4), encoding="utf-8"))
 
             # exiting the server
             socket.close()
@@ -93,7 +98,6 @@ def start_server():
     try:
         # activate the server
         server.serve_forever()
-        print("server is listening on PORT: ", PORT)
     except KeyboardInterrupt:
         sys.exit(0)
 
